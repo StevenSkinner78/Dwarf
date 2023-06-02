@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+                        "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_2.dtd">
+<taglib>
+	<tlib-version>1.1</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>dwarf</short-name>
+	<uri>http://gov.doc.isu.dwarf</uri>
+	<display-name>Dwarf *: Tag Library</display-name>
+	<tag>
+		<name>dataTable</name>
+		<tag-class>gov.doc.isu.dwarf.taglib.DwarfTableTag</tag-class>
+		<body-content>JSP</body-content>
+		<display-name>dataTable</display-name>
+		<description />
+		<attribute>
+			<name>formName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>requestURI</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>sort</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+			<description>
+				Use 'page' if you want to sort only visible records, or
+				'list' if you
+				want to sort the full list, or 'external'
+				if the data is
+				sorted outside displaytag.
+			</description>
+		</attribute>
+		<attribute>
+			<name>excludedParams</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+			<description>
+				Whitespace separated list containg the name of
+				parameters which should NOT be
+				forwarded during paging or
+				sorting. You
+				can use excludedParams="*" to match (exclude) any parameter.
+			</description>
+		</attribute>
+		<attribute>
+			<name>export</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+			<description>enable/disable export. Valid values are true or false</description>
+		</attribute>
+		<attribute>
+			<name>toggle</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>Toggles each row with sub row. valid values "collapsed"
+				and "expanded"</description>
+		</attribute>
+		<attribute>
+			<name>toggleAll</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>Toggles each row with sub row and adds a Expand All and
+				Collapse All link. valid values "collapsed" and "expanded"</description>
+		</attribute>
+		<attribute>
+			<name>offenderPage</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+			<description>If true, add offenderDetails on export. Valid values are
+				true or false</description>
+		</attribute>
+		<attribute>
+			<name>tableName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				reference to the name of table displayed.
+			</description>
+		</attribute>
+		<attribute>
+			<name>keepStatus</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+			<description>
+				Preserve the current paging/sort status across session.
+				The default is false
+				(do not use sessions). Note that
+				for this to
+				work
+				properly you need to assign to each table in your
+				application a
+				different id.
+			</description>
+		</attribute>
+		<attribute>
+			<name>clearStatus</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+			<description>Clears the current paging/sort status saved in session.</description>
+		</attribute>
+		<attribute>
+			<name>uid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+			<description>
+				Unique id used to identify this table. The object
+				representing the current
+				row is also added to the pageContext
+				under
+				this name and the current row number is added using the key
+				uid_rowNum. Two tables in the same page can't
+				have the same uid
+				(paging and sorting will affect both). If no "htmlId"
+				is specified
+				the same value will be used
+				for the html id of the generated table.
+			</description>
+		</attribute>
+		<attribute>
+			<name>exportColOffset</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>int</type>
+			<description>Column offset number used for exports media other than
+				HTML</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+			<description>html pass through attribute</description>
+		</attribute>
+		<attribute>
+			<name>className</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+			<description>html pass through attribute</description>
+		</attribute>
+		<attribute>
+			<name>cellspacing</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+			<description>html pass through attribute</description>
+		</attribute>
+		<attribute>
+			<name>cellpadding</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+			<description>html pass through attribute. Better using "padding" css
+				attribute in style or class</description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>columndata</name>
+		<tag-class>gov.doc.isu.dwarf.taglib.DwarfColumnTag</tag-class>
+		<body-content>JSP</body-content>
+		<display-name>columndata</display-name>
+		<description />
+		<attribute>
+			<name>sortable</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+			<description>Set to 'true' to make the column sortable. Defaults to
+				'false'.</description>
+		</attribute>
+		<attribute>
+			<name>sortName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+			<description>
+				Used with sort="external", the name that should be given
+				to the server
+				to sort this column. IE if
+				sortName="buzz", then the
+				href for this column to sort will have a parameter
+				d-(encodedId)-s=buzz. If sortName
+				is ommitted the value for the sort
+				param will default to the column
+				number.
+			</description>
+		</attribute>
+		<attribute>
+			<name>decorator</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+			<description>
+				Whitespace separated list of column decorators to apply
+				to the current column.
+				A table decorator name can be the
+				name of an
+				object in page, request, session or application scope or a
+				fully
+				qualified class name of a class
+				implementing the
+				gov.doc.isu.dwarf.taglib.displaytag.decorator.DisplaytagColumnDecorator
+				interface. If a decorator is specified for
+				the entire table, then
+				this decorator will decorate that decorator.
+			</description>
+		</attribute>
+		<attribute>
+			<name>maxLength</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>int</type>
+			<description>
+				If this attribute is provided, then the column's
+				displayed is limited
+				to this number of characters. An elipse
+				(...) is
+				appended to the end if this column is linked, and the user can
+				mouseover the elipse to get the full
+				text. Be careful on using this
+				attribute for String which can contain
+				html tags or entities, or
+				together with
+				the autolink attribute turned on: displaytag will do
+				its best trying to
+				avoid leaving unclosed tags or broken
+				entities in
+				the output, but a complex or bad input could lead to unattended
+				results.
+			</description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>searchrow</name>
+		<tag-class>gov.doc.isu.dwarf.taglib.DwarfSearchTag</tag-class>
+		<body-content>JSP</body-content>
+		<display-name>searchrow</display-name>
+		<description />
+		<attribute>
+			<name>useColumnInfo</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>ignoreColumns</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>buttonClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>buttonTitle</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>buttonLast</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>buttonColSpan</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+			<attribute>
+			<name>showInstructions</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+		<example>
+			&lt;dwarf:searchrow&gt;
+			&lt;/dwarf:searchrow&gt; </example>
+	</tag>
+	<tag>
+		<name>fieldDisplay</name>
+		<tag-class>gov.doc.isu.dwarf.taglib.FieldBoxTag</tag-class>
+		<body-content>empty</body-content>
+		<display-name>fieldDisplay</display-name>
+		<description>
+			Displays a container that holds checkBoxes for every
+			column in the database
+			for
+			the particular application. This tag was
+			designed to be used in
+			conjunction
+			with the display:table tag.
+		</description>
+		<attribute>
+			<name>formName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>action</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>labelClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>
